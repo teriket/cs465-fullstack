@@ -14,8 +14,12 @@ const newsRouter = require('./appserver/routes/news');
 const mealsRouter = require('./appserver/routes/meals');
 const contactRouter = require('./appserver/routes/contact');
 const aboutRouter = require('./appserver/routes/about');
+const apiRouter = require('./app_api/routes/index');
 
 var app = express();
+
+// Connect to the database
+require('./app_api/models/db');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'appserver' ,'views'));
@@ -27,7 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Associate HTTP requests to the appropriate router module
+// wire routes to controllers
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/travel', travelRouter);
@@ -35,7 +39,8 @@ app.use('/rooms', roomsRouter);
 app.use('/news', newsRouter);
 app.use('/meals', mealsRouter);
 app.use('/contact', contactRouter);
-app.use('/about', aboutRouter)
+app.use('/about', aboutRouter);
+app.use('/api', apiRouter);
 
 //setup partials for handlebars
 handlebars.registerPartials(__dirname + '/appserver/views/partials');

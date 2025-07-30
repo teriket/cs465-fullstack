@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const controller = require('../Controller/news')
+const controller = require('../controllers/news')
 
 /* GET news page. */
 router.get('/', controller.index)
