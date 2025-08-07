@@ -34,7 +34,65 @@ const tripsFindByCode = async(req, res) => {
     }
 };
 
+const tripsAddTrip = async(req, res) => {
+    const newTrip = new Trip({
+        code: req.body.code,
+        name: req.body.name,
+        length: req.body.length,
+        start: req.body.start,
+        resort: req.body.resort,
+        perPerson: req.body.perPerson,
+        image: req.body.image,
+        description: req.body.description
+    });
+
+    const data = await newTrip.save();
+    console.log("in AddTrip!");
+    if(!data){
+        return res
+            .status(400)
+            .json(error);
+    } else {
+        return res
+            .status(201)
+            .json(data)
+    }
+}
+
+const tripsUpdateTrip = async(req, res) => {
+    console.log(req.params);
+    console.log(req.body);
+
+    const data = await Model
+        .findOneAndUpdate(
+            {'code': req.params.tripCode},
+            {
+                code: req.body.code,
+                name: req.body.name,
+                length: req.body.length,
+                start: req.body.start,
+                resort: req.body.resort,
+                perPerson: req.body.perPerson,
+                image: req.body.image,
+                description: req.body.description
+            }
+        )
+        .exec();
+
+        if(!data){
+            return res
+                .status(400)
+                .json({error: "something went wrong"});
+        } else {
+            return res
+                .status(201)
+                .json(data);
+        }
+}
+
 module.exports = {
     tripList,
-    tripsFindByCode
+    tripsFindByCode,
+    tripsAddTrip,
+    tripsUpdateTrip
 };
