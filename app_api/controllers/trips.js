@@ -47,7 +47,6 @@ const tripsAddTrip = async(req, res) => {
     });
 
     const data = await newTrip.save();
-    console.log("in AddTrip!");
     if(!data){
         return res
             .status(400)
@@ -60,8 +59,6 @@ const tripsAddTrip = async(req, res) => {
 }
 
 const tripsUpdateTrip = async(req, res) => {
-    console.log(req.params);
-    console.log(req.body);
 
     const data = await Model
         .findOneAndUpdate(
