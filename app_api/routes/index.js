@@ -27,6 +27,11 @@ router
     .get(tripsController.tripsFindByCode)
     .put(authenticateJWT, tripsController.tripsUpdateTrip);
 
+// Increment views on a trip
+router
+    .route('/trips/:tripCode/views')
+    .put(tripsController.tripsAddOneView);
+
 // Make sure clients have a valid web token
 function authenticateJWT(req, res, next) {
     const authHeader = req.headers['authorization'];

@@ -87,7 +87,30 @@ const tripsUpdateTrip = async(req, res) => {
         }
 }
 
+const tripsAddOneView = async(req, res) => {
+    console.log(req.params);
+    const data = await Model
+        .findOneAndUpdate(
+            { 'code' : req.params.tripCode },
+            { 
+                $inc : { views : 1 }
+            }
+        )
+        .exec() // exec function used to prevent SQL injection
+
+    if(!data){
+        return res.status(400).json({error : "could not update the views on this page"})
+    }
+    else{
+        return res
+            .status(201)
+            .json(data)
+    }
+    
+}
+
 module.exports = {
+    tripsAddOneView,
     tripList,
     tripsFindByCode,
     tripsAddTrip,

@@ -54,6 +54,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// allow the server to serve static content from the public folder
+app.use(express.static('public'));
+
 //initialize authorization module
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());

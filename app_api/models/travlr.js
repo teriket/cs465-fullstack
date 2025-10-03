@@ -27,7 +27,12 @@ const tripSchema = new mongoose.Schema({
         required: true },
     description: {
         type: String,
-        required: true }
+        required: true },
+    views : { // Enhancement 3, updated the schema to reflect the data collection of user views
+        type: Number,
+        required : true,
+        default : 0
+    }
 });
 
 const Trip = mongoose.model('trips', tripSchema);
