@@ -55,4 +55,8 @@ export class TripListingComponent implements OnInit {
   public isLoggedIn() : boolean {
     return this.authentication.isLoggedIn();
   }
+
+  public viewAnalytics() {
+    this.router.navigate(['analytics-page']);
+  }
 }

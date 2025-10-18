@@ -28,6 +28,10 @@ export class TripCardComponent implements OnInit {
     this.router.navigate(['edit-trip']);
   }
 
+  public viewAnalytics() {
+    
+  }
+
   public isLoggedIn() : boolean {
     return this.authenticationService.isLoggedIn();
   }
