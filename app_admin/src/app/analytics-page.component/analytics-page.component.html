@@ -1,1 +1,15 @@
-<p>analytics-page.component works!</p>
+<div *ngIf="isLoggedIn()"> <!-- only render view if user is logged in -->
+
+    <h2>Views by page</h2>
+    <!-- pie chart -->
+     <app-pie-chart></app-pie-chart>
+
+</div>
+
+<!-- prompt the user to log in if they are logged out -->
+<div *ngIf="!isLoggedIn()">
+<div class="jumbotron">
+  <h1 class="display-4">Oops...</h1>
+  <p class="lead">Viewing user analytics requires administrative privileges.  Please login to continue</p>
+</div>
+</div>

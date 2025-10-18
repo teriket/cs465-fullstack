@@ -10,5 +10,5 @@ export const routes: Routes = [
     { path : '', component: TripListingComponent, pathMatch: 'full'},
     { path : 'edit-trip', component: EditTripComponent},
     { path : 'login', component : LoginComponent},
-    { path : 'analytics-page', component : AnalyticsPageComponent}
+    { path : 'analytics-page', component : AnalyticsPageComponent},
 ];
